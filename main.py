@@ -24,6 +24,10 @@ def inicio():
     
     return render_template("index.html", productos=productos)
 
+@app.get("/form_crear"):
+def formCrearProducto():
+    return render_template("crearProducto.html")
+
 @app.get("/contactos")
 def listarContactos():
     return render_template("contactos.html")
