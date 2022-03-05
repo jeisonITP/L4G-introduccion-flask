@@ -9,7 +9,7 @@
 <body>
     <h1>Crear producto</h1>
 
-    <form action="">
+    <form action="{{ url_for('crearProducto') }}" method="POST">
         <div>
             <label for="">Nombre</label>
             <input type="text" name="nombre">
