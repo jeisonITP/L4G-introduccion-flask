@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-</head>
-<body>
-    <h1>Productos</h1>
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Inicio
+{% endblock %}
+
+{% block contenido %}
+<h1>Productos</h1>
     <a href="{{ url_for('formCrearProducto') }}">Nuevo</a>
     <table>
         <tr>
@@ -19,10 +18,9 @@
         <tr>
             <td>{{ producto['id'] }}</td>
             <td>{{ producto['nombre'] }}</td>
-            <td>{{ producto['price'] }}</td>
+            <td>{{ producto['precio'] }}</td>
         </tr>
         {% endfor %}
 
     </table>
-</body>
-</html>
+{% endblock %}

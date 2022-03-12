@@ -1,24 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear producto</title>
-</head>
-<body>
-    <h1>Crear producto</h1>
+{% extends 'base.html' %}
 
-    <form action="{{ url_for('crearProducto') }}" method="POST">
-        <div>
+{% block titulo %}
+    Crear producto
+{% endblock %}
+
+{% block contenido %}
+<h1>Crear producto</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="alert alert-danger">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form class="container" action="{{ url_for('crearProducto') }}" method="POST">
+        <div class="mb-1">
             <label for="">Nombre</label>
-            <input type="text" name="nombre">
+            <input class="form-control" type="text" name="nombre" 
+                value="{{ nombre }}">
         </div>
-        <div>
+        <div class="mb-1">
             <label for="">Precio</label>
-            <input type="text" name="price">
+            <input class="form-control" type="number" name="price" 
+                value="{{ price }}">
         </div>
-        <button type="submit">Guardar</button>
+        <button class="btn btn-outline-success" type="submit">Guardar</button>
     </form>
-</body>
-</html>
+{% endblock %}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, flash, render_template, request, redirect, url_for
 import mysql.connector
 
 db = mysql.connector.connect(
@@ -11,6 +11,7 @@ db = mysql.connector.connect(
 db.autocommit = True
 
 app = Flask(__name__)
+app.secret_key = 'ElZ7GSMZq@!WNHoF'
 
 @app.get("/")
 def inicio():
@@ -34,10 +35,30 @@ def crearProducto():
     nombre = request.form.get('nombre')
     price = request.form.get('price')
     
+    is_valid = True
+    
+    if nombre == "":
+        flash("El nombre es requerido")
+        is_valid = False
+    
+    if price == "":
+        flash("El precio es requerido")
+        is_valid = False
+    
+    if not price.isdigit():
+        flash("El precio debe ser un numero")
+        is_valid = False
+    
+    if is_valid == False:
+        return render_template("crearProducto.html", 
+                nombre=nombre,
+                price=price,
+        )
+    
     #Insertar los datos en la base de datos
     cursor = db.cursor()
     
-    cursor.execute("insert into productos(nombre, price) values(%s, %s)", (
+    cursor.execute("insert into productos(nombre, precio) values(%s, %s)", (
         nombre,
         price,
     ))
