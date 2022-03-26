@@ -1,27 +1,12 @@
 from flask import Flask, flash, render_template, request, redirect, url_for
-import mysql.connector
-
-db = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='',
-    port=3306,
-    database='productos'
-)
-db.autocommit = True
+from models import productosModel
 
 app = Flask(__name__)
 app.secret_key = 'ElZ7GSMZq@!WNHoF'
 
 @app.get("/")
 def inicio():
-    cursor = db.cursor(dictionary=True)
-    
-    cursor.execute("select * from productos")
-    productos = cursor.fetchall() #Obtener todo
-    #producto = cursor.fetchone() 
-    
-    cursor.close()
+    productos = productosModel.obtenerProductos()
     
     return render_template("index.html", productos=productos)
 
@@ -55,15 +40,7 @@ def crearProducto():
                 price=price,
         )
     
-    #Insertar los datos en la base de datos
-    cursor = db.cursor()
-    
-    cursor.execute("insert into productos(nombre, precio) values(%s, %s)", (
-        nombre,
-        price,
-    ))
-    
-    cursor.close()
+    productosModel.crearProducto(nombre=nombre, price=price)
     #Volver al listado
     return redirect(url_for('inicio'))
 
