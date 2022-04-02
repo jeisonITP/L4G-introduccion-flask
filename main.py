@@ -1,5 +1,6 @@
 from flask import Flask, flash, render_template, request, redirect, url_for
 from models import productosModel
+from validators import required
 
 app = Flask(__name__)
 app.secret_key = 'ElZ7GSMZq@!WNHoF'
@@ -20,14 +21,25 @@ def crearProducto():
     nombre = request.form.get('nombre')
     price = request.form.get('price')
     
+    response = Validate([
+        {
+            'value': nombre,
+            'validators': 'required,min:8,max:25'
+        },
+        {
+            'value': price,
+            'validators': 'required,numeric'
+        },
+    ])
+    
+    print(response) #[] ['El nombre es requerido', 'el precio debe ser un numero']
+    
     is_valid = True
     
-    if nombre == "":
-        flash("El nombre es requerido")
+    if required.isRequired(nombre, 'nombre'):
         is_valid = False
     
-    if price == "":
-        flash("El precio es requerido")
+    if required.isRequired(price, 'precio'):
         is_valid = False
     
     if not price.isdigit():
