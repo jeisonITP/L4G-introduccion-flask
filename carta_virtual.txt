@@ -18,7 +18,7 @@
             - Tenga un caracter especial
     - Encriptación de la contraseña
 
-2. Inicio de sesión
+2. Inicio de sesión (8 Abril)
     - Formulario de Inicio
         - Email
         - Contraseña

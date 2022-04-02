@@ -21,10 +21,10 @@ def crearProducto():
     nombre = request.form.get('nombre')
     price = request.form.get('price')
     
-    response = Validate([
+    '''response = Validate([
         {
             'value': nombre,
-            'validators': 'required,min:8,max:25'
+            'validators': 'required,min:8'
         },
         {
             'value': price,
@@ -32,7 +32,7 @@ def crearProducto():
         },
     ])
     
-    print(response) #[] ['El nombre es requerido', 'el precio debe ser un numero']
+    print(response)''' #[] ['El nombre es requerido', 'el precio debe ser un numero']
     
     is_valid = True
     
