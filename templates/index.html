@@ -14,6 +14,7 @@
             <td>ID</td>
             <td>NOMBRE</td>
             <td>PRECIO</td>
+            <td>IMAGEN</td>
         </tr>
 
         {% for producto in productos %}
@@ -21,6 +22,9 @@
             <td>{{ producto['id'] }}</td>
             <td>{{ producto['nombre'] }}</td>
             <td>{{ producto['price'] }}</td>
+            <td>
+                <img src="{{ producto['imagen'] }}" style="width: 100px;">
+            </td>
         </tr>
         {% endfor %}
 

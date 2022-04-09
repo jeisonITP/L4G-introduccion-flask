@@ -17,7 +17,13 @@
         {% endif %}
     {% endwith %}
 
-    <form class="container" action="{{ url_for('crearProducto') }}" method="POST">
+    <form class="container" action="{{ url_for('crearProducto') }}" 
+        enctype="multipart/form-data"
+        method="POST">
+        <div class="mb-1">
+            <label for="">Imagen</label>
+            <input type="file" name="imagen">
+        </div>
         <div class="mb-1">
             <label for="">Nombre</label>
             <input class="form-control" type="text" name="nombre" 

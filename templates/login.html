@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Crear producto
+{% endblock %}
+
+{% block contenido %}
+<h1>Iniciar sesión</h1>
+    <form class="container" action="{{ url_for('loginPost') }}" method="POST">
+        <div class="mb-1">
+            <label for="">Email</label>
+            <input class="form-control" type="text" name="email" >
+        </div>
+        <div class="mb-1">
+            <label for="">Contraseña</label>
+            <input class="form-control" type="password" name="password">
+        </div>
+        <button class="btn btn-outline-success" type="submit">Iniciar</button>
+    </form>
+{% endblock %}

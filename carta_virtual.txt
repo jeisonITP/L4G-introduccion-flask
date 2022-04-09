@@ -25,19 +25,19 @@
     - Validación:
         - Usuario este confirmado
 
-3. Reestablecer la contraseña
+3. Reestablecer la contraseña (22 Abril)
     - Formulario de Reestablecer la contraseña
         - Email
     - Correo con instructivo para recuperar la contraseña
 
-4. Productos
+4. Productos (22 Abril Listado y Creacion de productos)
     - Listado
     - Creación y edición: 
         Nombre
         Descripción
         Precio
         Estado
-        Imagen
+        Imagen (Archivos)
     - Eliminación
 
 5. Perfil

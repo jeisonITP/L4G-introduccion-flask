@@ -11,13 +11,14 @@ def obtenerProductos():
     
     return productos
 
-def crearProducto(nombre, price):
+def crearProducto(nombre, price, imagen):
     #Insertar los datos en la base de datos
     cursor = db.cursor()
     
-    cursor.execute("insert into productos(nombre, price) values(%s, %s)", (
+    cursor.execute("insert into productos(nombre, price, imagen) values(%s, %s, %s)", (
         nombre,
         price,
+        imagen,
     ))
     
     cursor.close()

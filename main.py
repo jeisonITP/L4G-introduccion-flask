@@ -1,4 +1,4 @@
-from flask import Flask, flash, render_template, request, redirect, url_for
+from flask import Flask, flash, render_template, request, redirect, url_for, session
 from models import productosModel
 from validators import required
 
@@ -7,6 +7,11 @@ app.secret_key = 'ElZ7GSMZq@!WNHoF'
 
 @app.get("/")
 def inicio():
+    if not 'user_id' in session:
+        return redirect(url_for('loginForm'))
+    
+    print('el usuario es:' + str(session['user_id']))
+    
     productos = productosModel.obtenerProductos()
     
     return render_template("index.html", productos=productos)
@@ -17,6 +22,8 @@ def formCrearProducto():
 
 @app.post("/form_crear")
 def crearProducto():
+    imagen = request.files['imagen']
+    
     #Recuperar los datos del formulario
     nombre = request.form.get('nombre')
     price = request.form.get('price')
@@ -36,10 +43,10 @@ def crearProducto():
     
     is_valid = True
     
-    if required.isRequired(nombre, 'nombre'):
+    if not required.isRequired(nombre, 'nombre'):
         is_valid = False
     
-    if required.isRequired(price, 'precio'):
+    if not required.isRequired(price, 'precio'):
         is_valid = False
     
     if not price.isdigit():
@@ -51,8 +58,12 @@ def crearProducto():
                 nombre=nombre,
                 price=price,
         )
+        
+    nombre_imagen = imagen.filename
     
-    productosModel.crearProducto(nombre=nombre, price=price)
+    imagen.save('./static/imagen/' + nombre_imagen)
+    
+    productosModel.crearProducto(nombre=nombre, price=price, imagen='/static/imagen/' + nombre_imagen)
     #Volver al listado
     return redirect(url_for('inicio'))
 
@@ -64,6 +75,27 @@ def listarContactos():
 def editarContacto(contactoId):
     return render_template("editarContactos.html", id = contactoId)
 
-# /edad/20  Naciste en el año 2000
+@app.get('/login')
+def loginForm():
+    return render_template('login.html')
+
+@app.post('/login')
+def loginPost():
+    #Validar que las credenciales sean correctas
+    
+    user_id = 5
+    
+    #Crear la sesion
+    session['user_id'] = user_id
+    
+    
+    return 'Se ha iniciado sesion'
+
+@app.get('/cerrar_sesion')
+def cerrarSesion():
+    
+    session.clear()
+    
+    return redirect(url_for('loginForm'))
 
 app.run(debug=True)
