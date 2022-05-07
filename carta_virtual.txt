@@ -40,7 +40,7 @@
         Imagen (Archivos)
     - Eliminación
 
-5. Perfil
+5. Perfil (13 Mayo)
     - Actualizar Información de la empresa:
         Nombre
         Descripcion
@@ -50,7 +50,7 @@
         Email
         Contraseña
 
-6. Carta virtual
+6. Carta virtual (27 Mayo)
     - Mostrar los productos activos de la empresa
     - Mostrar la Información basica de la empresa
     - Carrito compras
@@ -63,8 +63,10 @@
         - Celular
     - Notificación via WP a la empresa
 
-7. Extras obligatorios
-    - Validaciones en el servidor
+7. Revisión beta local (3 Junio) Ideal (Heroku)
+
+8. Extras obligatorios
+    - Validaciones en el servidor 
     - Retroalimentaciones
     - Formularios sin perder informacion
     - Diseño
@@ -72,4 +74,4 @@
         - Modelo => SQL
         - Vista => templates
         - Controlador => 
-    - Heroku => Maquina virtual
+    - Heroku => Maquina virtual (10 Junio)
